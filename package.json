@@ -1,44 +1,54 @@
 {
-  "name": "ap-angular2-fullcalendar",
-  "version": "1.3.1",
-  "description": "Angular2 component for FullCalendar",
-  "main": "index.js",
+  "name": "jl-angular-fullcalendar",
+  "version": "1.0.1",
+  "description": "Angular2+ component for FullCalendar",
+  "main": "jl-angular-fullcalendar.umd.js",
+  "jsnext:main": "jl-angular-fullcalendar.module.js",
+  "types": "calendar.module.d.ts",
   "scripts": {
-    "build": "rm -rf dist/ && ngc build -p ./tsconfig.json",
-    "release": "npm run build && cp package.json dist/ && cd dist/ && npm publish && cd .."
+    "clear": "rm -rf dist",
+    "transpile": "ngc",
+    "package": "rollup -c",
+    "minify": "uglifyjs dist/jl-angular-fullcalendar.umd.js --screw-ie8 --compress --mangle --comments --output dist/jl-angular-fullcalendar.umd.js",
+    "build": "npm run clear && npm run transpile && npm run package && npm run minify",
+    "deploy": "npm run build && cp package.json README.md dist/ && cd dist"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/lbertenasco/ap-ng2-fullcalendar.git"
+    "url": "git+https://github.com/jloosli/jl-angular-fullcalendar.git"
   },
   "keywords": [
     "fullcalendar",
     "angular",
     "calendar",
+    "angular 5",
     "angular 4",
     "angular 2"
   ],
-  "author": "Luciano Bertenasco <lbertenasco@gmail.com> ()",
+  "author": "Jared Loosli <jloosli@gmail.com>",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/lbertenasco/ap-ng2-fullcalendar/issues"
+    "url": "https://github.com/jloosli/jl-ng2-fullcalendar/issues"
   },
-  "homepage": "https://github.com/lbertenasco/ap-ng2-fullcalendar#readme",
+  "homepage": "https://github.com/jloosli/jl-ng2-fullcalendar#readme",
+  "peerDependencies": {
+    "@angular/core": ">=5.0.0"
+  },
   "dependencies": {
-    "@angular/common": "^4.x.x",
-    "@angular/core": "^4.x.x",
-    "@angular/forms": "^4.x.x",
-    "@types/fullcalendar": "2.7.44",
-    "@types/jquery": "2.0.47",
-    "fullcalendar": "3.4.0"
+    "fullcalendar": "3.6.2",
+    "fullcalendar-scheduler": "^1.8.1"
   },
   "devDependencies": {
-    "@angular/compiler": "^4.x.x",
-    "@angular/compiler-cli": "^4.x.x",
-    "@angular/platform-browser": "^4.x.x",
+    "@angular/core": "^5.0.0",
+    "@angular/common": "^5.0.0",
+    "@angular/compiler": "^5.0.0",
+    "@angular/compiler-cli": "^5.0.0",
+    "@types/fullcalendar": "2.7.43",
+    "@types/jquery": "2.0.46",
     "@types/node": "7.0.31",
-    "ng2-datepicker": "2.0.0-dev5",
-    "rxjs": "5.4.1",
-    "typescript": "2.3.4"
+    "rollup": "^0.50.0",
+    "rxjs": "^5.5.2",
+    "typescript": "^2.6.1",
+    "uglify-js": "^3.1.6"
   }
 }
